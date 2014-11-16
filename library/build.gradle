@@ -1,3 +1,10 @@
+version = VERSION_NAME
+group = GROUP
+
+repositories {
+	mavenCentral()
+}
+
 apply plugin: 'com.android.library'
 
 buildscript {
@@ -5,7 +12,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:0.12.+'
+    classpath 'com.android.tools.build:gradle:0.13.2'
   }
 }
 
@@ -15,13 +22,13 @@ repositories {
 
 dependencies {
   compile 'com.android.support:support-v4:19.1.0'
-  compile 'com.android.support:appcompat-v7:21.0.+'
+  compile 'com.android.support:appcompat-v7:21.0.0'
   compile 'com.nineoldandroids:library:2.4.0'
 }
 
 android {
   compileSdkVersion 21
-  buildToolsVersion "21.0.1"
+  buildToolsVersion "21.1.1"
   lintOptions {
     abortOnError false
   }
@@ -36,4 +43,8 @@ android {
   }
 }
 
-apply from: '../maven_push.gradle'
+//apply from: '../maven_push.gradle'
+
+def isReleaseBuild() {
+	return version.contains("SNAPSHOT") == false
+}
